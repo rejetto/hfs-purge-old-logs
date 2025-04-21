@@ -1,8 +1,8 @@
 exports.version = 1.0
-exports.description = "Auto-delete rotated log files older than a configurable number of days"
+exports.description = "Automatically delete rotated log files older than a configurable number of days"
 exports.apiRequired = 9.8 // api.misc
 exports.repo = "rejetto/hfs-purge-old-logs"
-exports.preview = ["https://github.com/user-attachments/assets/9104ee74-89e7-4563-b813-9ab1019e55f8"]
+exports.preview = ["https://raw.githubusercontent.com/rejetto/hfs-purge-old-logs/1e00e7712b10b30a3f074a44c0fd088036d99a37/screen1.png"]
 
 exports.config = {
     days: {

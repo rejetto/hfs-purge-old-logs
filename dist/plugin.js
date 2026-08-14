@@ -1,9 +1,10 @@
-exports.version = 1.01
+exports.version = 1.02
 exports.description = "Automatically delete rotated log files older than a configurable number of days"
-exports.apiRequired = 9.8 // api.misc
+exports.apiRequired = 11.4 // api._
 exports.repo = "rejetto/hfs-purge-old-logs"
 exports.preview = ["https://raw.githubusercontent.com/rejetto/hfs-purge-old-logs/1e00e7712b10b30a3f074a44c0fd088036d99a37/screen1.png"]
 exports.changelog = [
+    { "version": 1.02, "message": "Delete zipped rotated logs produced by current HFS versions" },
     { "version": 1.01, "message": "fix: failed to delete files in case of special regex characters in the filenames" }
 ]
 
@@ -35,7 +36,7 @@ exports.init = async api => {
 
             try {
                 for (const file of await fs.readdir(dir)) {
-                    const match = file.match(new RegExp(`^${api._.escapeRegExp(prefix)}-(\\d{4}-\\d{2}-\\d{2})${api._.escapeRegExp(ext)}$`))
+                    const match = file.match(new RegExp(`^${api._.escapeRegExp(prefix)}-(\\d{4}-\\d{2}-\\d{2})${api._.escapeRegExp(ext)}(?:\\.zip)?$`))
                     if (!match) continue
                     const fileDate = new Date(match[1])
                     if (fileDate.getTime() > cutoffTime) continue
